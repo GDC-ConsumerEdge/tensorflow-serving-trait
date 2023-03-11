@@ -82,7 +82,11 @@ echo -n "{\"token\"{{':'}} \"${SCM_TOKEN_TOKEN}\", \"username\"{{':'}} \"${SCM_T
 
 ```
 
+<<<<<<< HEAD
 ### Local Validation
+=======
+## Local Validation
+>>>>>>> 56e1984b156985e935a9f621bf4f68acad9fe01f
 
 Assuming `nomos` is installed (via `gcloud components install nomos`)
 
@@ -121,7 +125,7 @@ gcloud iam service-accounts keys create ./gcr-gsa-key.json --iam-account=${GSA_N
 # Create GCP Secret Manager Secret
 gcloud secrets create tf-lite-gcr-creds --replication-policy="automatic" --project="${PROJECT_ID}" --data-file="./gcr-gsa-key.json"
 # Grant GSA access to bucket
-gsutil iam ch serviceAccount:${GSA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com:objectViewer gs://${GCS_BUCKET}
+gsutil iam ch serviceAccount:${GSA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com:objectViewer,legacyBucketReader gs://${GCS_BUCKET}
 ```
 
 
