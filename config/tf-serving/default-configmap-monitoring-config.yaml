@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tf-monitoring-config
+data:
+  monitoring.config: |-
+    prometheus_config {
+      enable: true,
+      path: "/monitoring/prometheus/metrics"
+    }

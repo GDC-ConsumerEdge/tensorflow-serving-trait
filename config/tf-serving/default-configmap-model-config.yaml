@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: modelnet-model-config
+data:
+  models.config: |-
+    model_config_list {
+        config {
+          name: 'ssd-mobilenet-v1-1'
+          base_path: 'gs://consumer-edge-public-aiml-samples'     # public GCS bucket with a set of sample models (Models are samples ONLY)
+          model_platform: 'tensorflow'
+          model_version_policy {
+            specific {
+              versions: 1 # corresponds to folder 1/
+              versions: 2 # corresponds to folder 2/
+            }
+          }
+          version_labels {
+            key: 'stable'
+            value: 1
+          }
+          version_labels {
+            key: 'experimental'
+            value: 2
+          }
+        }
+        config {
+          name: 'mobilenet_v1_1.0_224_quant'
+          base_path: 'gs://consumer-edge-public-aiml-samples'
+          model_platform: 'tensorflow'
+          model_version_policy {
+            specific {
+              versions: 3
+            }
+          }
+          version_labels {
+            key: 'stable-resnet'
+            value: 3
+          }
+        }
+    }

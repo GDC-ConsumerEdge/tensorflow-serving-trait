@@ -1,0 +1,28 @@
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Generated from helm -> k8s files
+generated/
+output/
+
+# do not include pulled Helm chart
+base/charts/
+
+# Sometimes used tmp folder
+tmp/
+
+# Following examples, key might get created, don't push by accident
+gcr-gsa-key.json

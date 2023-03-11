@@ -1,0 +1,14 @@
+stages:
+  - vet
+  - release
+
+vet-repo-unstructured:
+  stage: vet
+  image:
+    name: gcr.io/config-management-release/nomos:latest
+  script:
+    - nomos vet --source-format=unstructured --no-api-server-check --path config/
+  rules:
+    - exists:
+      - config/system/repo.yaml  # cluster folder is ONLY used
+      when: never
