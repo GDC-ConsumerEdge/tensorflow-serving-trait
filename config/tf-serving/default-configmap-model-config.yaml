@@ -9,7 +9,7 @@ data:
         config {
           name: 'ssd-mobilenet-v1-1'
           base_path: 'gs://consumer-edge-public-aiml-samples'     # public GCS bucket with a set of sample models (Models are samples ONLY)
-          model_platform: 'tflite' # tensorflow
+          model_platform: 'tensorflow'
           model_version_policy {
             specific {
               versions: 1 # corresponds to folder 1/
