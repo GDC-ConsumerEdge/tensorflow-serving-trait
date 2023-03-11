@@ -6,7 +6,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: tfserving-deployment
+    app: tfserving-server
   ports:
   - name: grpc
     port: 8500
