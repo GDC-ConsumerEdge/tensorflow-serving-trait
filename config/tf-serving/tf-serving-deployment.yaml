@@ -24,7 +24,7 @@ spec:
           - --model_config_file_poll_wait_seconds=60              # Refresh config every x-seconds
           - --monitoring_config_file=/monitor/monitoring.config   # Volume mounted below
           - --prefer_tflite_model=true                            # Allows .tflite models (experimental)
-          - --file_system_poll_wait_seconds=300                   # Look for new models in GCS bucket (default 300s = 5min)
+          - --file_system_poll_wait_seconds=60                    # Look for new models in GCS bucket (default 300s = 5min)
           - --allow_version_labels_for_unavailable_models=true    # Required for multiple models to load
         resources:
           requests:
