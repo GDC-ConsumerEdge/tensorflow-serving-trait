@@ -82,11 +82,7 @@ echo -n "{\"token\"{{':'}} \"${SCM_TOKEN_TOKEN}\", \"username\"{{':'}} \"${SCM_T
 
 ```
 
-<<<<<<< HEAD
 ### Local Validation
-=======
-## Local Validation
->>>>>>> 56e1984b156985e935a9f621bf4f68acad9fe01f
 
 Assuming `nomos` is installed (via `gcloud components install nomos`)
 
