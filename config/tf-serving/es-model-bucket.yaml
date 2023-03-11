@@ -8,14 +8,14 @@ metadata:
   name: tf-gsa-creds
   namespace: tf-serving
 spec:
-  refreshInterval: 1m
+  refreshInterval: 1h
   secretStoreRef:
     kind: ClusterSecretStore
     name: gcp-secret-store
-  target:                                       # K8s secret definition
-    name: tf-gsa-creds                          # K8s 'Secret' object name
+  target:                          # K8s secret definition
+    name: tf-gsa-creds             # K8s 'Secret' object name
     creationPolicy: Owner
   data:
-  - secretKey: tf-lite-gcr-creds                # Name of the GCPSM secret key (this needs to exist priort to use)
-    remoteRef:
-      property: gcr-creds
+  - dataFrom:
+    - extract:
+      key: tf-lite-gcr-creds       # Name of the GCPSM secret key (this needs to exist priort to use)
