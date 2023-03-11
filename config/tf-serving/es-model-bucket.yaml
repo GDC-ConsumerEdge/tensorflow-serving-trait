@@ -15,6 +15,7 @@ spec:
   target:                          # K8s secret definition
     name: tf-gsa-creds             # K8s 'Secret' object name
     creationPolicy: Owner
-  dataFrom:
-  - extract:
-      key: tf-lite-gcr-creds       # Name of the GCPSM secret key (this needs to exist priort to use)
+  data:
+  - secretKey: creds-gcp.json      #  Field in Secret
+    remoteRef:
+      key: tf-lite-gcr-creds       # The GCP Secret
