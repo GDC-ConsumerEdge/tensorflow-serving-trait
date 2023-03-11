@@ -17,4 +17,4 @@ spec:
     creationPolicy: Owner
   dataFrom:
   - extract:
-    key: tf-lite-gcr-creds       # Name of the GCPSM secret key (this needs to exist priort to use)
+      key: tf-lite-gcr-creds       # Name of the GCPSM secret key (this needs to exist priort to use)
