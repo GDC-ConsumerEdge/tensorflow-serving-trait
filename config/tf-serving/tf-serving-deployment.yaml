@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: tf-serving-container
-        image: tensorflow/serving:2.11.0
+        image: tensorflow/serving:2.13.0
         args:
           # https://github.com/tensorflow/serving/blob/master/tensorflow_serving/model_servers/main.cc#L59 -- Threads are not setup by default
           - --model_config_file=/models/models.config             # Volume Mounted below

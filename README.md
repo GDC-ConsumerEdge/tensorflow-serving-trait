@@ -82,11 +82,7 @@ echo -n "{\"token\"{{':'}} \"${SCM_TOKEN_TOKEN}\", \"username\"{{':'}} \"${SCM_T
 
 ```
 
-<<<<<<< HEAD
 ### Local Validation
-=======
-## Local Validation
->>>>>>> 56e1984b156985e935a9f621bf4f68acad9fe01f
 
 Assuming `nomos` is installed (via `gcloud components install nomos`)
 
@@ -99,6 +95,21 @@ nomos vet --no-api-server-check --path config/
 ```
 nomos vet --no-api-server-check --source-format "unstructred" --path config/
 ```
+
+## Model Configuration & Convention
+
+This CTR assumes the solution deploying to has a certain GCS bucket structure and fits a convention.
+
+### Model Folder Structure
+
+All model vesions should be placed inside of a folder structure using a folder name as the version.
+
+```
+gs://[bucket_name]/version/saved_mode.pb
+```
+
+New versions add on using the convention
+
 
 ### Docker method
 
@@ -120,6 +131,8 @@ export PROJECT_ID=<your google project id>
 export GSA_NAME="tf-model-gsa"
 export GCS_BUCKET="consumer-edge-public-aiml-samples" # replace with your bucket
 
+# Create GSA
+gcloud iam service-accounts create ${GSA_NAME} --description="GSA used to read models from GCS buckets and server to TF Serving" --display-name="TF Serving Model Agent"
 # Create new GSA key
 gcloud iam service-accounts keys create ./gcr-gsa-key.json --iam-account=${GSA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com
 # Create GCP Secret Manager Secret
