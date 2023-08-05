@@ -20,13 +20,11 @@ export IP_ADDRESS="IP of the LoadBalancer Service" # kubectl get svc -n tf-servi
 curl http://${IP_ADDRESS}:8501/v1/models/hat-no-hat-v1/versions/1
 ```
 
-## Bash
+## Inference with Bash
 
-1. Create Base64 version of a picture
+1. Create Base64 version of a picture (possible hat picture is `first-hat.jpg`)
 ```
-base64 -w 0 < first-file.jpg > first-inference.json
-
-base64 -w 0 < second-hat-pic.jpg > second-inference.json
+base64 -w 0 < first-hat.jpg > first-inference.json
 ```
 
 1. Create a file called "first-inference.json"
@@ -44,14 +42,16 @@ base64 -w 0 < second-hat-pic.jpg > second-inference.json
 }
 ```
 
+1.
 ```bash
 curl \
     -X POST \
     -H "Content-Type: application/json" \
-    http://192.168.8.23:8501/v1/models/hat-no-hat-v1/versions/1:predict \
-    -d "@second-inference.json"
+    http://${IP_ADDRESS}:8501/v1/models/hat-no-hat-v1/versions/1:predict \
+    -d "@first-inference.json"
 ```
 
+> NOTE: You will see EVERY possible item in the output. Currently there is no way to filter out results over/under a certain threshold.
 
 ### Find the values of the model
 
