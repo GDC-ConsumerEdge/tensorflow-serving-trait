@@ -28,11 +28,11 @@ spec:
           - --allow_version_labels_for_unavailable_models=true    # Required for multiple models to load
         resources:
           requests:
-            cpu: "1"
-            memory: "350Mi"
-          limits:
             cpu: "4"
-            memory: "700Mi"
+            memory: "750Mi"
+          limits:
+            cpu: "16"
+            memory: "2Gi"
         volumeMounts:
         - name: models-config
           mountPath: "/models"
