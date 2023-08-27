@@ -11,18 +11,20 @@ data:
           base_path: 'gs://hat-no-hat-public-models'     # public GCS bucket with a set of sample models (Models are samples ONLY)
           model_platform: 'tensorflow'
           model_version_policy {
+            # Setup specific policy to load, run all versions below
             specific {
               versions: 1 # corresponds to folder 1/
+              versions: 2 # corresponds to folder 2/
             }
           }
           version_labels {
-            key: 'stable'
+            key: 'previous'
             value: 1
           }
-          # version_labels {
-          #   key: 'experimental'
-          #   value: 2
-          # }
+          version_labels {
+            key: 'latest'
+            value: 2
+          }
         }
     }
 
