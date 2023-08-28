@@ -14,6 +14,7 @@ spec:
     metadata:
       labels:
         app: tfserving-server
+        scheduling: zone-1
     spec:
       containers:
       - name: tf-serving-container
