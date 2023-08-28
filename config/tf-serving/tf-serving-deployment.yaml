@@ -6,7 +6,7 @@ metadata:
   labels:
     app: tfserving-deployment
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: tfserving-server
@@ -28,7 +28,7 @@ spec:
           - --allow_version_labels_for_unavailable_models=true    # Required for multiple models to load
         resources:
           requests:
-            cpu: "4"
+            cpu: "8"
             memory: "750Mi"
           limits:
             cpu: "16"
