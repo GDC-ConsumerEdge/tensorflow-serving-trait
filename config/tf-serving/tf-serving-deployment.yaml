@@ -15,6 +15,10 @@ spec:
       labels:
         app: tfserving-server
         scheduling: zone-1
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8501"
+        prometheus.io/path: "/monitoring/prometheus/metrics"
     spec:
       containers:
       - name: tf-serving-container
@@ -22,14 +26,14 @@ spec:
         args:
           # https://github.com/tensorflow/serving/blob/master/tensorflow_serving/model_servers/main.cc#L59 -- Threads are not setup by default
           - --model_config_file=/models/models.config             # Volume Mounted below
-          - --model_config_file_poll_wait_seconds=60              # Refresh config every x-seconds
+          - --model_config_file_poll_wait_seconds=300             # Refresh config every x-seconds
           - --monitoring_config_file=/monitor/monitoring.config   # Volume mounted below
           - --prefer_tflite_model=true                            # Allows .tflite models (experimental)
-          - --file_system_poll_wait_seconds=60                    # Look for new models in GCS bucket (default 300s = 5min)
+          - --file_system_poll_wait_seconds=300                   # Look for new models in GCS bucket (default 300s = 5min)
           - --allow_version_labels_for_unavailable_models=true    # Required for multiple models to load
         resources:
           requests:
-            cpu: "8"
+            cpu: "4"
             memory: "750Mi"
           limits:
             cpu: "16"
