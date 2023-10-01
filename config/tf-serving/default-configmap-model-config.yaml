@@ -1,34 +1,38 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: models-config
-  namespace: tf-serving
-data:
-  models.config: |-
-    model_config_list {
-        config {
-          name: 'hat-no-hat-v1'
-          base_path: 'gs://hat-no-hat-public-models'     # public GCS bucket with a set of sample models (Models are samples ONLY)
-          model_platform: 'tensorflow'
-          model_version_policy {
-            # Setup specific policy to load, run all versions below
-            specific {
-              # versions: 1 # corresponds to folder 1/
-              # versions: 2 # corresponds to folder 2/
-              # LEAVE 3 for tflite
-              versions: 4 # corresponds to folder 3/
-            }
-          }
-          # version_labels {
-          #   key: 'previous'
-          #   value: 2
-          # }
-          version_labels {
-            key: 'latest'
-            value: 4
-          }
-        }
-    }
+###
+### NOTE: Implement the configuration on the cluster before adding the trait (or at the same time)
+###
+
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: models-config
+#   namespace: tf-serving
+# data:
+#   models.config: |-
+#     model_config_list {
+#         config {
+#           name: 'hat-no-hat-v1'
+#           base_path: 'gs://hat-no-hat-public-models'     # public GCS bucket with a set of sample models (Models are samples ONLY)
+#           model_platform: 'tensorflow'
+#           model_version_policy {
+#             # Setup specific policy to load, run all versions below
+#             specific {
+#               # versions: 1 # corresponds to folder 1/
+#               # versions: 2 # corresponds to folder 2/
+#               # LEAVE 3 for tflite
+#               versions: 4 # corresponds to folder 3/
+#             }
+#           }
+#           # version_labels {
+#           #   key: 'previous'
+#           #   value: 2
+#           # }
+#           version_labels {
+#             key: 'latest'
+#             value: 4
+#           }
+#         }
+#     }
 
 ### Below is the Default
 # apiVersion: v1
