@@ -4,10 +4,12 @@ This repostiory is used to add tensorflow-serving trait to an ACM-enabled Anthos
 
 This repository references a Google Cloud Storage (GCS) bucket to pull Tensorflow models from. The bucket and models need to be generated before using this trait in a TF Serving to a cluster.
 
-## Pre-Reqs
+## Pre-Requsites
 * GCS Bucket name containing TensorFlow "SavedModel" and tf-lite models
-* GSA (`tf-model-gsa`) with read-only access to bucket
-* GSA JSON creds of `tf-model-gsa`
+* GSA named (`tf-model-gsa`) with read-only access to the model bucket
+* Above GSA JSON creds stored in a Google Cloud Secret called `tf-model-gsa` (Note: `ExternalSecret` will create K8s Secret)
+* ExternalSecrets implemented on your cluster (use: https://gitlab.com/gcp-solutions-public/retail-edge/available-cluster-traits/external-secrets-anthos as another Trait to your cluster)
+* Create a `ConfigMap` templated at `/config/tf-serving/default-config-model-config.yaml` placed in `tf-serving` Namespace on the Cluster or in an ACM repo. Adjust the values as needed to serve YOUR model
 
 ## Default Values
 This trait has some default values and conventions that may not fit your conditions.
