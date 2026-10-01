@@ -140,7 +140,8 @@ gcloud iam service-accounts keys create ./gcr-gsa-key.json --iam-account=${GSA_N
 # Create GCP Secret Manager Secret
 gcloud secrets create tf-lite-gcr-creds --replication-policy="automatic" --project="${PROJECT_ID}" --data-file="./gcr-gsa-key.json"
 # Grant GSA access to bucket
-gsutil iam ch serviceAccount:${GSA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com:objectViewer,legacyBucketReader gs://${GCS_BUCKET}
+gcloud storage buckets add-iam-policy-binding gs://${GCS_BUCKET} --member=serviceAccount:${GSA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com --role=objectViewer
+gcloud storage buckets add-iam-policy-binding gs://${GCS_BUCKET} --member=serviceAccount:${GSA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com --role=legacyBucketReader
 ```
 
 
